@@ -49,3 +49,5 @@ int main() {
     cout << st.size() << endl;
     return 0;
 }
+
+// tc = 0(n^2) sc = O(n)
