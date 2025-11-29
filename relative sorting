@@ -1,0 +1,31 @@
+#include<iostream>
+#include<queue>
+#include<vector>
+#include<unordered_map>
+#include <climits>
+using namespace std;
+int main(){
+    unordered_map<int,int>mpp;
+    vector<int>arr1={1,3,6,9,4,8,6,2};
+    vector<int>arr2={1,2,6};
+    for(int i=0;i<arr2.size();i++){
+        mpp[arr2[i]]=i;
+    }
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>prr;
+    for(int j=0;j<arr1.size();j++){
+        if(mpp.find(arr1[j])!=mpp.end()){
+            prr.push({mpp[arr1[j]],arr1[j]});
+        }
+        else{
+            prr.push({INT_MAX,arr1[j]});
+        }
+    }
+    vector<int>ans;
+    while(!prr.empty()){
+       ans.push_back(prr.top().second);
+       prr.pop();
+    }
+    for(int k=0;k<ans.size();k++){
+        cout<<ans[k]<<" ";
+    }
+}
