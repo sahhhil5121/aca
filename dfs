@@ -1,0 +1,27 @@
+#include<iostream>
+#include<queue>
+#include<vector>
+using namespace std;
+void dfs(int i,vector<vector<int>>&adj,vector<int>&ans,vector<int>&visited){
+      visited[i]=1;
+      ans.push_back(i);
+      for(auto it:adj[i]){
+        if(visited[it]==-1){
+            dfs(it,adj,ans,visited);
+        }
+      }
+}
+int main(){
+    vector<vector<int>>adj={{1,2,3},{0,2},{1,0},{0,4},{3}};
+    int n=adj.size();
+    vector<int>visited(n,-1);
+    vector<int>ans;
+    for(int i=0;i<n;i++){
+        if(visited[i]==-1){
+            dfs(i,adj,ans,visited);
+        }
+    }
+    for(int i=0;i<ans.size();i++){
+        cout<<ans[i]<<" ";
+    }
+}
