@@ -1,0 +1,18 @@
+#include<iostream>
+#include<queue>
+#include<vector>
+using namespace std;
+void srr(int&total,int n){
+    if(n==0){
+        return;
+    }
+    total+=n;
+    srr(total,n-1);
+}
+int main(){
+    int n;
+    cin>>n;
+    int total=0;
+  srr(total,n);
+  cout<<total;
+}
