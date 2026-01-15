@@ -1,0 +1,13 @@
+import heapq
+
+def relative_sort(A, B):
+    order = {v:i for i, v in enumerate(B)}
+    heap = [(order.get(x, float('inf')), x) for x in A]
+    heapq.heapify(heap)
+    return [heapq.heappop(heap)[1] for _ in range(len(heap))]
+
+
+A = [2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8]
+B = [2, 1, 8, 3]
+
+print(relative_sort(A, B))
