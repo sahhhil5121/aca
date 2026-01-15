@@ -1,53 +1,45 @@
-#include <iostream>
-#include <queue>
+#include <bits/stdc++.h>
 using namespace std;
 
-class myStack {
-    
+class Stack{
     queue<int> q1, q2;
 
 public:
-    void push(int x) {
-        q2.push(x);
+    void push(int x){
+        q1.push(x);
+    }
 
-        while (!q1.empty()) {
+    void pop(){
+        if(q1.empty()) return;
+
+        while(q1.size() > 1){
             q2.push(q1.front());
             q1.pop();
         }
-          swap(q1, q2);
+        q1.pop();                 
+        swap(q1, q2);              
     }
 
-    void pop()
-    {
-        if (q1.empty())
-            return;
-        q1.pop();
+    int top(){
+        return q1.empty() ? -1 : q1.back();
     }
-
-    int top()
-    {
-        if (q1.empty())
-            return -1;
-        return q1.front();
-    }
-
-    int size() { return q1.size(); }
 };
 
-int main() {
-    myStack st;
-    st.push(1);
-    st.push(2);
-    st.push(3);
+int main(){
+    Stack s;
+    int n, x;
 
-    cout << st.top() << endl;
-    st.pop();
-    cout << st.top() << endl;
-    st.pop();
-    cout << st.top() << endl;
+    cout << "Enter number of elements: ";
+    cin >> n;
 
-    cout << st.size() << endl;
-    return 0;
+    cout << "Enter elements:\n";
+    for(int i=0; i<n; i++){
+        cin >> x;
+        s.push(x);
+    }
+
+    cout << "Top = " << s.top() << endl;
+
+    s.pop();
+    cout << "Top after pop = " << s.top();
 }
-
-// tc = 0(n^2) sc = O(n)
